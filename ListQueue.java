@@ -1,4 +1,4 @@
-ccpublic class ListQueue<AnyType> {
+public class ListQueue<AnyType> {
     private ListNode<AnyType> front;
     private ListNode<AnyType> back;
 
