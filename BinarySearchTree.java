@@ -85,4 +85,35 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
         }
         return node;
     }
+
+    // find parent of element x
+    public BinaryNode<AnyType> parentOf(AnyType x, BinaryNode<AnyType> node) {
+        if (node.getElement().equals(x)) {
+            throw new RuntimeException("Root does not have parent");
+        }
+        if (node.getLeft() != null && node.getRight() != null) {
+            if (node.getLeft().getElement().equals(x) || node.getRight().getElement().equals(x)) {
+                return node;
+            }
+            if (x.compareTo(node.getElement()) < 0) {
+                return parentOf(x, node.getLeft());
+            }
+            return parentOf(x, node.getRight());
+        }
+        if (node.getLeft() != null) {
+            if (node.getLeft().getElement().equals(x)) {
+                return node;
+            } else {
+                return parentOf(x, node.getLeft());
+            }
+        }
+        if (node.getRight() != null) {
+            if (node.getRight().getElement().equals(x)) {
+                return node;
+            } else {
+                return parentOf(x, node.getRight());
+            }
+        }
+        return null;
+    }
 }
